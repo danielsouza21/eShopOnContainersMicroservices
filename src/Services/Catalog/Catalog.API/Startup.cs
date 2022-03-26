@@ -1,20 +1,19 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Catalog.API
 {
     public class Startup
     {
+        private const string SWAGGER_URL = "/swagger/v1/swagger.json";
+        private const string SWAGGER_APP_NAME = "Catalog.API";
+        private const string SWAGGER_APP_VERSION = "v1";
+        private const string SWAGGER_NAME_FORMAT = "{0} {1}";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -29,7 +28,9 @@ namespace Catalog.API
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Catalog.API", Version = "v1" });
+                c.SwaggerDoc(SWAGGER_APP_VERSION, new OpenApiInfo { 
+                    Title = SWAGGER_APP_NAME, Version = SWAGGER_APP_VERSION 
+                });
             });
         }
 
@@ -40,7 +41,10 @@ namespace Catalog.API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Catalog.API v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint(
+                    SWAGGER_URL, 
+                    string.Format(SWAGGER_NAME_FORMAT, SWAGGER_APP_NAME, SWAGGER_APP_VERSION))
+                );
             }
 
             app.UseRouting();
