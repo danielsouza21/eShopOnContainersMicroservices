@@ -14,7 +14,6 @@ namespace Catalog.API.Controllers
     [Route("api/v1/[controller]")]
     public class CatalogController : ControllerBase
     {
-        //TODO: Terminar de mapear endpoints
         private readonly IProductRepository _repository;
         private readonly ILogger<CatalogController> _logger;
 
@@ -24,7 +23,7 @@ namespace Catalog.API.Controllers
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        [HttpGet("products")]
+        [HttpGet()]
         [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
@@ -34,7 +33,7 @@ namespace Catalog.API.Controllers
             return Ok(products);
         }
 
-        [HttpGet("product/{id}")]
+        [HttpGet("{id:length(24)}", Name = "GetProduct")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Product>> GetProductById(string id)
@@ -43,7 +42,7 @@ namespace Catalog.API.Controllers
 
             if(product is null)
             {
-                _logger.LogError($"Product with id '{id}' not found");
+                _logger.LogWarning($"Product with id '{id}' not found");
                 return NotFound();
             }
 
@@ -51,7 +50,7 @@ namespace Catalog.API.Controllers
             return Ok(product);
         }
 
-        [HttpGet("category/{categoryName}")]
+        [HttpGet("[action]/{categoryName}", Name = "GetProductByCategory")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Product>>> GetProductsByCategory(string categoryName)
@@ -60,12 +59,59 @@ namespace Catalog.API.Controllers
 
             if (products is null || !products.Any())
             {
-                _logger.LogError($"Category '{categoryName}' products not found");
+                _logger.LogWarning($"Category '{categoryName}' products not found");
                 return NotFound();
             }
 
             _logger.LogInformation($"Success in recovering category '{categoryName}' products");
             return Ok(products);
+        }
+
+        [HttpGet("[action]/{productName}", Name = "GetProductByName")]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProductsByName(string productName)
+        {
+            var product = await _repository.GetProductByNameAsync(productName);
+
+            if (product is null)
+            {
+                _logger.LogWarning($"Product '{productName}' products not found");
+                return NotFound();
+            }
+
+            _logger.LogInformation($"Success in recovering product '{productName}'");
+            return Ok(product);
+        }
+
+        [HttpPost()]
+        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.Created)]
+        public async Task<ActionResult<IEnumerable<Product>>> CreateProduct([FromBody] Product product)
+        {
+            await _repository.CreateProductAsync(product);
+
+            _logger.LogInformation($"Success adding new product {product.Name}.");
+            return CreatedAtRoute("GetProduct", new { product.Id }, product);
+        }
+
+        [HttpPut()]
+        [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<IEnumerable<Product>>> UpdateProduct([FromBody] Product product)
+        {
+            var updateResult = await _repository.UpdateProductWithIdAsync(product);
+
+            _logger.LogInformation($"Success in updating product {product.Name}.");
+            return Ok(new { updateResult });
+        }
+
+        [HttpDelete("{id:length(24)}", Name = "DeleteProduct")]
+        [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<IEnumerable<Product>>> DeleteProduct(string id)
+        {
+            var deleteResult = await _repository.DeleteProductByIdAsync(id);
+
+            _logger.LogInformation($"Success in deleting product with id '{id}'.");
+            return Ok(new { deleteResult });
         }
     }
 }

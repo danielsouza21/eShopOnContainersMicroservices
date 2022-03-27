@@ -1,4 +1,5 @@
 docker run -d -p 27017:27017 --name shopping-mongo mongo (run a new image)
 docker exec -it shopping-mongo /bin/bash (open terminal of container)
+docker start shopping-mongo
 
 docker ps (list all running containers)
