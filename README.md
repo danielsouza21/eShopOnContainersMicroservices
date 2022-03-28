@@ -32,4 +32,4 @@ Key architectural references:
 * Containerization of databases
 * YML files configuration
 
-> SOLID, Clean Architecture, Domain Driven Design (DDD), Clean Code, logging, validation, exception handling, Swagger Open API and other standards/features were highly used for designing the projects.
+> 💡 SOLID, Clean Architecture, Domain Driven Design (DDD), Clean Code, logging, validation, exception handling, Swagger Open API and other standards/features were highly used for designing the projects.
