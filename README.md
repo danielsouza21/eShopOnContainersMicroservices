@@ -3,7 +3,7 @@ Development of an ECommerce in an environment with microservices architecture in
 
 Implementation of an ECommerce using a complex microservices architecture with several popular and main technologies of the Microsoft network (stack .NET 5.0).
 
-![Microsoft_eShopOn](/helperResources/eShopOnContainers-Architecture-Microsoft.png)
+![Microsoft_eShopOn](/helperResourcesAssets/eShopOnContainers-Architecture-Microsoft.png)
 
 Key architectural references:
 * [Introducing eShopOnContainers reference app](https://docs.microsoft.com/en-us/dotnet/architecture/cloud-native/introduce-eshoponcontainers-reference-app)
@@ -11,7 +11,7 @@ Key architectural references:
 
 ## Final design goal:
 
-![Microservices_Arch_Applied](/helperResources/Applied%20Project%20Architecture.png)
+![Microservices_Arch_Applied](/helperResourcesAssets/Applied%20Project%20Architecture.png)
 
 ### Microservices created and implemented:
 
