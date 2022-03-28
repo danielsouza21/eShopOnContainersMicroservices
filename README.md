@@ -5,6 +5,10 @@ Implementation of an ECommerce using a complex microservices architecture with s
 
 ![Microsoft_eShopOn](/HelperResources/eShopOnContainers-Architecture-Microsoft.png)
 
+Key architectural references:
+* [Introducing eShopOnContainers reference app](https://docs.microsoft.com/en-us/dotnet/architecture/cloud-native/introduce-eshoponcontainers-reference-app)
+* [.NET Microservices: Architecture for Containerized .NET Applications](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/)
+
 ## Final design goal:
 
 ![Microservices_Arch_Applied](/HelperResources/Applied%20Project%20Architecture.png)
