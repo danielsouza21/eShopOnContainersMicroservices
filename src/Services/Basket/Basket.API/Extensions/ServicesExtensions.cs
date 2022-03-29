@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Basket.Infrastructure.Repository;
+using Basket.Infrastructure.Repository.Repositories;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
@@ -14,6 +16,8 @@ namespace Basket.API.Extensions
             {
                 options.Configuration = cacheSettingsSection[AppConstants.REDIS_CONNECTION_STRING_KEY_CONFIG];
             });
+
+            services.AddScoped<IBasketRepository, RedisBasketRepository>();
         }
 
         public static void AddSwagger(this IServiceCollection services)
