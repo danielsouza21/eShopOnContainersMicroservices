@@ -9,13 +9,17 @@ Key architectural references:
 * [Introducing eShopOnContainers reference app](https://docs.microsoft.com/en-us/dotnet/architecture/cloud-native/introduce-eshoponcontainers-reference-app)
 * [.NET Microservices: Architecture for Containerized .NET Applications](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/)
 
-## Final design goal:
+## Final design goal and current state of development:
 
 ![Microservices_Arch_Applied](/helperResourcesAssets/Applied%20Project%20Architecture.png)
 
+Implementations being carried out and planned:
+- Discount API and gRPC communication with basket microservice;
+- Relational Database Application with PostgreSQL.
+
 ## Microservices created and implemented:
 
-> 💡 SOLID, Clean Architecture, Domain Driven Design (DDD), Clean Code, logging, validation, exception handling, Swagger Open API and other standards/features were highly used for designing the projects.
+> 💡 SOLID, Clean Architecture, Domain Driven Design (DDD), Clean Code, Repository Pattern, logging, validation, exception handling, Swagger Open API and other standards/features were highly used for designing the projects.
 
 #### Catalog microservice: 
 * ASP.NET Core Web API application 
@@ -56,3 +60,4 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 * **Catalog API -> http://host.docker.internal:8000/swagger/index.html**
 * **Basket API -> http://host.docker.internal:8001/swagger/index.html**
 * **Portainer -> http://host.docker.internal:9000** - User: admin/admin1234
+* **pgAdmin PostgreSQL -> http://host.docker.internal:5050** - admin@aspnetrun.com/admin1234
