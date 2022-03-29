@@ -40,7 +40,7 @@ services:
   pgadmin:
     container_name: pgadmin
     environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@aspnetrun.com
+      - PGADMIN_DEFAULT_EMAIL=admin@postgres.com
       - PGADMIN_DEFAULT_PASSWORD=admin1234
     restart: always
     ports:

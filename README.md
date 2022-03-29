@@ -33,6 +33,13 @@ Implementations being carried out and planned:
 * **Redis database** connection and containerization
 * Repository Pattern Implementation
 
+#### Discount microservice which includes;
+* ASP.NET **Grpc Server** application
+* Build a Highly Performant **inter-service gRPC Communication** with Basket Microservice
+* Exposing Grpc Services with creating **Protobuf messages**
+* Using **Dapper for micro-orm implementation** to simplify data access and ensure high performance
+* **PostgreSQL database** connection and containerization
+
 #### Docker Compose establishment with all microservices on docker:
 * Containerization of microservices
 * Containerization of databases
@@ -57,7 +64,7 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 
 2. Microservices urls:
 
-* **Catalog API -> http://host.docker.internal:8000/swagger/index.html**
-* **Basket API -> http://host.docker.internal:8001/swagger/index.html**
-* **Portainer -> http://host.docker.internal:9000** - User: admin/admin1234
-* **pgAdmin PostgreSQL -> http://host.docker.internal:5050** - admin@aspnetrun.com/admin1234
+* **Catalog API -> http://localhost:8000/swagger/index.html**
+* **Basket API -> http://localhost:8001/swagger/index.html**
+* **Portainer -> http://localhost:9000** - User: admin/admin1234
+* **pgAdmin PostgreSQL -> http://localhost:5050** - admin@postgres.com/admin1234

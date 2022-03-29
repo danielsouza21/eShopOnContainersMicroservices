@@ -11,7 +11,6 @@ namespace Basket.API.Extensions
         public static void AddDependenciesInjectionAndServices(this IServiceCollection services, IConfiguration configuration)
         {
             var cacheSettingsSection = configuration.GetSection(AppConstants.REDIS_CACHE_SETTINGS_SECTION_CONFIG);
-            var tst = configuration.GetValue<string>("CacheSettings:ConnectionString");
 
             services.AddStackExchangeRedisCache(options =>
             {
