@@ -26,10 +26,7 @@ namespace Catalog.Infrastructure.Repository.Repositories
 
         public async Task<Product> GetProductByIdAsync(string id)
         {
-            if(!ObjectId.TryParse(id, out var parsedId))
-            {
-                throw new ArgumentException($"{id} is not in the expected {nameof(ObjectId)} format.");
-            }
+            HandleIdParameter(id);
 
             var filter = Builders<Product>.Filter.Eq(p => p.Id, id);
             return await GetProductWithFilter(filter);
@@ -82,6 +79,14 @@ namespace Catalog.Infrastructure.Repository.Repositories
             var dataCursor = await _catalogContext.Products.FindAsync(filter);
             var products = await dataCursor?.FirstOrDefaultAsync();
             return products; 
+        }
+
+        private static void HandleIdParameter(string id)
+        {
+            if (!ObjectId.TryParse(id, out var parsedId))
+            {
+                throw new ArgumentException($"{id} is not in the expected {nameof(ObjectId)} format.");
+            }
         }
 
         #endregion
