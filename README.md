@@ -39,6 +39,7 @@ Implementations being carried out and planned:
 * Exposing Grpc Services with creating **Protobuf messages**
 * Using **Dapper for micro-orm implementation** to simplify data access and ensure high performance
 * **PostgreSQL database** connection and containerization
+* Application of retry policy for database migration
 
 #### Docker Compose establishment with all microservices on docker:
 * Containerization of microservices

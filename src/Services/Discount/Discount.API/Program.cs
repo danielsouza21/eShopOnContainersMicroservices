@@ -1,13 +1,16 @@
+using Discount.Infrastructure.Repository.Repositories.MigrationExtensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
 namespace Discount.API
 {
-    public static class Program
+    public class Program
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+            host.MigrateDatabase<Program>();
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
