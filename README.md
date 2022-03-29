@@ -13,7 +13,9 @@ Key architectural references:
 
 ![Microservices_Arch_Applied](/helperResourcesAssets/Applied%20Project%20Architecture.png)
 
-### Microservices created and implemented:
+## Microservices created and implemented:
+
+> 💡 SOLID, Clean Architecture, Domain Driven Design (DDD), Clean Code, logging, validation, exception handling, Swagger Open API and other standards/features were highly used for designing the projects.
 
 #### Catalog microservice: 
 * ASP.NET Core Web API application 
@@ -33,8 +35,6 @@ Key architectural references:
 * YML files configuration
 * Use Portainer to manage docker containers
 
-> 💡 SOLID, Clean Architecture, Domain Driven Design (DDD), Clean Code, logging, validation, exception handling, Swagger Open API and other standards/features were highly used for designing the projects.
-
 ## Setup and Run Project
 
 ### Requirements
@@ -43,13 +43,15 @@ Key architectural references:
 * [.Net Core 5](https://dotnet.microsoft.com/download/dotnet-core/5)
 * [Docker Desktop](https://www.docker.com/products/docker-desktop)
 
+### Steps to get start
+
 1. At the root directory which include **docker-compose.yml** files, run below command to inicialize docker microservices containers:
 ```csharp
 docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 ```
 > Wait for docker compose all microservices, some microservices need extra time to work
 
-3. *Microservices* urls:
+2. Microservices urls:
 
 * **Catalog API -> http://host.docker.internal:8000/swagger/index.html**
 * **Basket API -> http://host.docker.internal:8001/swagger/index.html**
