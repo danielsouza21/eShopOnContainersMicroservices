@@ -34,3 +34,23 @@ Key architectural references:
 * Use Portainer to manage docker containers
 
 > 💡 SOLID, Clean Architecture, Domain Driven Design (DDD), Clean Code, logging, validation, exception handling, Swagger Open API and other standards/features were highly used for designing the projects.
+
+## Setup and Run Project
+
+### Requirements
+
+* [Visual Studio](https://visualstudio.microsoft.com/downloads/)
+* [.Net Core 5](https://dotnet.microsoft.com/download/dotnet-core/5)
+* [Docker Desktop](https://www.docker.com/products/docker-desktop)
+
+1. At the root directory which include **docker-compose.yml** files, run below command to inicialize docker microservices containers:
+```csharp
+docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
+```
+> Wait for docker compose all microservices, some microservices need extra time to work
+
+3. *Microservices* urls:
+
+* **Catalog API -> http://host.docker.internal:8000/swagger/index.html**
+* **Basket API -> http://host.docker.internal:8001/swagger/index.html**
+* **Portainer -> http://host.docker.internal:9000** - User: admin/admin1234
