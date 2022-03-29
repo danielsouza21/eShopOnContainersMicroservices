@@ -27,9 +27,10 @@ Key architectural references:
 * **Redis database** connection and containerization
 * Repository Pattern Implementation
 
-#### Docker Compose establishment with all microservices on docker;
+#### Docker Compose establishment with all microservices on docker:
 * Containerization of microservices
 * Containerization of databases
 * YML files configuration
+* Use Portainer to manage docker containers
 
 > 💡 SOLID, Clean Architecture, Domain Driven Design (DDD), Clean Code, logging, validation, exception handling, Swagger Open API and other standards/features were highly used for designing the projects.
