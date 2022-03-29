@@ -3,7 +3,6 @@ using Discount.Domain.Entities;
 using Discount.Infrastructure.Repository.Repositories.DapperQueries;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
-using System;
 using System.Threading.Tasks;
 
 namespace Discount.Infrastructure.Repository.Repositories
