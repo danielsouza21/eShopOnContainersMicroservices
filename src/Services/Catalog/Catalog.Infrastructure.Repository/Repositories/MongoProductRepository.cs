@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Catalog.Infrastructure.Repository.Repositories
 {
-    public class ProductRepository : IProductRepository
+    public class MongoProductRepository : IProductRepository
     {
         private readonly ICatalogContext _catalogContext;
 
-        public ProductRepository(ICatalogContext catalogContext)
+        public MongoProductRepository(ICatalogContext catalogContext)
         {
             _catalogContext = catalogContext ?? throw new ArgumentNullException(nameof(catalogContext));
         }

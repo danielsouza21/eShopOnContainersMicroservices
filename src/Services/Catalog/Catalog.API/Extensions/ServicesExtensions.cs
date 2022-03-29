@@ -11,7 +11,7 @@ namespace Catalog.API.Extensions
         public static void AddDependenciesInjection(this IServiceCollection services)
         {
             services.AddScoped<ICatalogContext, CatalogContext>();
-            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductRepository, MongoProductRepository>();
         }
 
         public static void AddSwagger(this IServiceCollection services)
