@@ -8,3 +8,5 @@ docker start shopping-mongo
 docker ps (list all running containers)
 
 docker pull redis (to download a image)
+
+docker kill $(docker ps -q) [stop all containers]
