@@ -10,6 +10,7 @@ namespace Basket.Infrastructure.Services
         public static void ConfigureDiscountGrpcService(this IServiceCollection services, string gprcDiscountUrl)
         {
             services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(o => o.Address = new Uri(gprcDiscountUrl));
+            services.AddScoped<DiscountGrpcService>();
         }
     }
 }

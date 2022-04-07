@@ -44,12 +44,15 @@ namespace Basket.API.Controllers
         {
             //Getting all coupons from discount PostgreSQL for each basketItem using gRPC communication
             //Communication as client configured before in project (.csproj) [Protobuf] and Startup.cs
-            basket.Items.ForEach(async item => {
+            foreach (var item in basket.Items)
+            {
                 var coupon = await _discountGrpcService.GetDiscountForProductNameAsync(item.ProductName);
                 item.Price -= coupon.Amount;
-            });
+                _logger.LogInformation($"Found a discount of '{coupon.Amount}' for product '{item.ProductName}' when updating basket for '{basket.UserName}' user");
+            }
 
             var basketUpdated = await _repository.UpsertBasketAsync(basket);
+
             _logger.LogInformation($"Success updating {basket.UserName} basket");
             return Ok(basketUpdated);
         }
