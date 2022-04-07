@@ -42,7 +42,7 @@ namespace Basket.API.Controllers
         [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<ShoppingCart>> UpdateBasket([FromBody] ShoppingCart basket)
         {
-            //Getting all coupons from discount PostgreSQL for each basketItem using gRPC communication
+            //Getting all coupons from discount PostgreSQL for each basketItem using gRPC communication to DiscountService call
             //Communication as client configured before in project (.csproj) [Protobuf] and Startup.cs
             foreach (var item in basket.Items)
             {
