@@ -1,9 +1,11 @@
 ﻿using Basket.Domain.Entities;
 using Basket.Infrastructure.Repository;
+using Basket.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -14,11 +16,13 @@ namespace Basket.API.Controllers
     public class BasketController : ControllerBase
     {
         private readonly IBasketRepository _repository;
+        private readonly DiscountGrpcService _discountGrpcService;
         private readonly ILogger<BasketController> _logger;
 
-        public BasketController(IBasketRepository repository, ILogger<BasketController> logger)
+        public BasketController(IBasketRepository repository, DiscountGrpcService discountGrpcService, ILogger<BasketController> logger)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _discountGrpcService = discountGrpcService ?? throw new ArgumentNullException(nameof(discountGrpcService));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
@@ -38,6 +42,13 @@ namespace Basket.API.Controllers
         [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<ShoppingCart>> UpdateBasket([FromBody] ShoppingCart basket)
         {
+            //Getting all coupons from discount PostgreSQL for each basketItem using gRPC communication
+            //Communication as client configured before in project (.csproj) [Protobuf] and Startup.cs
+            basket.Items.ForEach(async item => {
+                var coupon = await _discountGrpcService.GetDiscountForProductNameAsync(item.ProductName);
+                item.Price -= coupon.Amount;
+            });
+
             var basketUpdated = await _repository.UpsertBasketAsync(basket);
             _logger.LogInformation($"Success updating {basket.UserName} basket");
             return Ok(basketUpdated);

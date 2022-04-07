@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Basket.Infrastructure.Repository\Basket.Infrastructure.Repository.csproj" />
+    <ProjectReference Include="..\Basket.Infrastructure.Services\Basket.Infrastructure.Services.csproj" />
   </ItemGroup>
 
 </Project>
