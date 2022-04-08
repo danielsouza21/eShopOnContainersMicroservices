@@ -14,7 +14,7 @@ Key architectural references:
 ![Microservices_Arch_Applied](/helperResourcesAssets/Applied%20Project%20Architecture.png)
 
 Implementations being carried out and planned:
-- Developing Discount.Grpc Microservices for Microservices Grpc Communication
+- Developing Ordering Microservices with CQRS Pattern
 
 ## Microservices created and implemented:
 
@@ -30,6 +30,7 @@ Implementations being carried out and planned:
 * ASP.NET Core Web API application 
 * REST API (CRUD operations)
 * **Redis database** connection and containerization
+* Consume **Discount Grpc Service** for inter-service sync communication to calculate product final price
 * Repository Pattern Implementation
 
 #### Discount microservice which includes;
@@ -39,6 +40,13 @@ Implementations being carried out and planned:
 * Using **Dapper for micro-orm implementation** to simplify data access and ensure high performance
 * **PostgreSQL database** connection and containerization
 * Application of retry policy for database migration
+
+#### Ordering Microservice
+* ASP.NET Core Web API application 
+* Developing **CQRS with using MediatR, FluentValidation and AutoMapper packages**
+* Consuming **RabbitMQ** BasketCheckout event queue with using **MassTransit-RabbitMQ** Configuration
+* **SqlServer database** connection and containerization
+* Using **Entity Framework Core ORM** and auto migrate to SqlServer when application startup
 
 #### Docker Compose establishment with all microservices on docker:
 * Containerization of microservices
@@ -61,6 +69,8 @@ Implementations being carried out and planned:
 docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 ```
 > Wait for docker compose all microservices, some microservices need extra time to work
+
+> It is also possible to launch the project in visual studio by running (F5) when pointing to the docker-compose startup project
 
 2. Microservices urls:
 
