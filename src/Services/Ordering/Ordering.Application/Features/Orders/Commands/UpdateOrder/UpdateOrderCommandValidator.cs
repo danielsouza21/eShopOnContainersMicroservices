@@ -2,13 +2,13 @@
 
 namespace Ordering.Application.Features.Orders.Commands.UpdateOrder
 {
-    public class UpdateOrderCommandValidator : AbstractValidator<UpdateOrderCommandRequest>
+    public class UpdateOrderCommandValidator : AbstractValidator<UpdateOrderCommandRequest> //IValidator
     {
         private const int TOTAL_PRICE_ZERO_VALUE = 0;
         private const int USER_NAME_MAXIMUM_LENGTH = 50;
 
         //Class to validate all props of the Request
-        //"Pre Proccessor Behavior" stage of MediatR workflow
+        //"Pre Proccessor Behavior" stage of MediatR workflow (IPipelineBehaviour)
         public UpdateOrderCommandValidator()
         {
             RuleFor(p => p.UserName)
