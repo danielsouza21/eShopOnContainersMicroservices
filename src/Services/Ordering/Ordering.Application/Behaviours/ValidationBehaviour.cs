@@ -10,7 +10,7 @@ using ValidationException = Ordering.Application.Exceptions.ValidationException;
 namespace Ordering.Application.Behaviours
 {
     /// <summary>
-    /// MediatR pipeline configuration, pre-processing behavior
+    /// MediatR pipeline configuration (pre-processing behavior).
     /// </summary>
     public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
     {
