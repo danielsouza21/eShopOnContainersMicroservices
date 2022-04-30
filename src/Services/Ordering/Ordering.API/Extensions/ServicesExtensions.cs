@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Ordering.Application.Behaviours;
+using Ordering.Infrastructure;
 using Ordering.Infrastructure.Mail;
 using Ordering.Infrastructure.Persistence;
 using System.Reflection;

@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Ordering.Application.Exceptions;
 using Ordering.Application.Interfaces.ExternalServices;
 using Ordering.Application.Models;
 using SendGrid;
 using SendGrid.Helpers.Mail;
+using System;
 using System.Threading.Tasks;
 
 namespace Ordering.Infrastructure.Mail
@@ -16,7 +18,7 @@ namespace Ordering.Infrastructure.Mail
         public readonly EmailSettings _emailSettings;
         public readonly SendGridClient _emailClient;
 
-        public readonly ILogger<EmailService> _logger
+        public readonly ILogger<EmailService> _logger;
 
         public EmailService(IOptions<EmailSettings> mailSettings, ILogger<EmailService> logger) //TODO: Entender IOptions mailSettings
         {
@@ -43,7 +45,7 @@ namespace Ordering.Infrastructure.Mail
             if (response.StatusCode != System.Net.HttpStatusCode.Accepted && response.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 _logger.LogError("Email sending failed.");
-                return false;
+                throw new EmailException($"Unexpected response status {response.StatusCode} when sending email.");
             }
 
             _logger.LogInformation($"Email sent to {emailRequest.To}.");
