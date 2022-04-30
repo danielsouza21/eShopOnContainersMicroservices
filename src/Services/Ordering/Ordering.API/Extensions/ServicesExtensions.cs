@@ -4,17 +4,19 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Ordering.Application.Behaviours;
+using Ordering.Infrastructure.Mail;
+using Ordering.Infrastructure.Persistence;
 using System.Reflection;
 
 namespace Ordering.API.Extensions
 {
     public static class ServicesExtensions
     {
-        public static IServiceCollection AddDependenciesInjectionAndServices(this IServiceCollection services)
+        public static IServiceCollection AddDependenciesInjectionAndServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
             services.ConfigureCqrsMediatrWithValidation();
+            services.ConfigureInfrastructureServices(configuration);
 
             return services;
         }
@@ -29,6 +31,12 @@ namespace Ordering.API.Extensions
                     Version = AppConstants.SWAGGER_APP_VERSION
                 });
             });
+        }
+
+        private static void ConfigureInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddMailServices(configuration);
+            services.AddPersistenceServices(configuration);
         }
 
         private static void ConfigureCqrsMediatrWithValidation(this IServiceCollection services)

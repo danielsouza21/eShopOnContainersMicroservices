@@ -5,6 +5,6 @@ namespace Ordering.Application.Interfaces.ExternalServices
 {
     public interface IEmailService
     {
-        Task<bool> SendEmail(Email email);
+        Task<bool> SendEmail(SendEmailRequest emailRequest);
     }
 }

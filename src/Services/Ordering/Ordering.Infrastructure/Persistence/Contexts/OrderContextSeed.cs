@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Ordering.Infrastructure.Persistence.OrderData
+namespace Ordering.Infrastructure.Persistence.Contexts
 {
     public class OrderContextSeed
     {
@@ -19,7 +19,7 @@ namespace Ordering.Infrastructure.Persistence.OrderData
             }
         }
 
-        private IEnumerable<Order> GetPreconfiguredSeedOrders()
+        private static IEnumerable<Order> GetPreconfiguredSeedOrders()
         {
             return new List<Order>
             {
