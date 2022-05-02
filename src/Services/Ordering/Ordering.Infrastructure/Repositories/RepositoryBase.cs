@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Ordering.Application.Interfaces.Repositories;
 using Ordering.Domain.Common;
+using Ordering.Infrastructure.Persistence.Contexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace Ordering.Infrastructure.Repositories
 {
-    public abstract class RepositoryBase<T, EntityContext> : IAsyncRepository<T> where T : EntityBase where EntityContext : DbContext
+    public abstract class RepositoryBase<T, TContext> : IAsyncRepository<T> where T : EntityBase where TContext : DbContext
     {
-        protected readonly EntityContext _dbContext;
+        protected readonly TContext _dbContext;
 
-        protected RepositoryBase(EntityContext dbContext)
+        protected RepositoryBase(TContext dbContext)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }

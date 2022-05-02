@@ -14,10 +14,10 @@ namespace Ordering.Infrastructure.Repositories
         {
         }
 
-        public async Task<IReadOnlyList<Order>> GetOrdersByUserNameAsync(string userName)
+        public async Task<IReadOnlyCollection<Order>> GetOrdersByUserNameAsync(string userName)
         {
             var orderList = await _dbContext.Orders.Where(order => order.UserName == userName).ToListAsync();
-            return orderList;
+            return orderList.AsReadOnly();
         }
     }
 }

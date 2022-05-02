@@ -9,6 +9,6 @@ namespace Ordering.Application.Interfaces.Repositories
     /// </summary>
     public interface IOrderRepository : IAsyncRepository<Order>
     {
-        Task<IReadOnlyList<Order>> GetOrdersByUserNameAsync(string userName);
+        Task<IReadOnlyCollection<Order>> GetOrdersByUserNameAsync(string userName);
     }
 }

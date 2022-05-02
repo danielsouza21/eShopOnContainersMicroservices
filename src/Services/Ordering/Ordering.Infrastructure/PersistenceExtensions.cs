@@ -19,7 +19,7 @@ namespace Ordering.Infrastructure
             var orderConnectionString = configuration.GetConnectionString(InfrastructureConstants.ORDER_REPOSITORY_CONNECTION_STRING_KEY);
             services.AddDbContext<OrderContext>(options => options.UseSqlServer(orderConnectionString));
 
-            services.AddScoped<IOrderRepository, OrderRepository>(); //TODO: Verificar se é necessario DI para IAsyncRepository
+            services.AddScoped<IOrderRepository, OrderRepository>();
 
             return services;
         }

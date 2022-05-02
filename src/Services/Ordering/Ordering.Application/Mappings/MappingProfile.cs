@@ -14,5 +14,15 @@ namespace Ordering.Application.Mappings
             CreateMap<Order, CheckoutOrderCommandRequest>().ReverseMap();
             CreateMap<Order, UpdateOrderCommandRequest>().ReverseMap();
         }
+
+        public static MapperConfiguration InitializeAutoMapper()
+        {
+            MapperConfiguration config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+
+            return config;
+        }
     }
 }
