@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Ordering.Infrastructure;
 using Ordering.Infrastructure.Persistence.Contexts;
 
 namespace Ordering.API
@@ -9,14 +11,13 @@ namespace Ordering.API
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args)
-                .Build()
-                /*.MigrateDatabase<OrderContext>((context, services) =>
-                {
-                    var logger = services.GetService<ILogger<OrderContextSeed>>();
-                    OrderContextSeed.SeedAsync(context, logger).Wait();
-                })*/
-                .Run();
+            var host = CreateHostBuilder(args).Build();
+            host.MigrateDatabase<OrderContext>((context, services) => //Action<TContext, IServiceProvider>
+            {
+                var logger = services.GetService<ILogger<OrderContextSeed>>();
+                OrderContextSeed.SeedAsync(context, logger).Wait();
+            });
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
