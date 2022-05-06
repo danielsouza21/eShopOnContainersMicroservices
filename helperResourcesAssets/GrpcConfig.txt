@@ -1,0 +1,18 @@
+> Add service connection
+
+Infrastructure.Services -> Adicionar -> Referências de serviço -> grpc
+{apontar para arquivo 'service'.proto como cliente}
+
+`
+  <ItemGroup>
+    <Protobuf Include="..\..\Discount\Discount.Grpc\Protos\discount.proto" GrpcServices="Client">
+      <Link>Protos\discount.proto</Link>
+    </Protobuf>
+  </ItemGroup>
+`
+
+> Serviço com injeção de dependência para cliente grpc proto
+{ex.: 'DiscountProtoService.DiscountProtoServiceClient'}
+
+> Configurar DI
+{services.AddGrpcClient<'grpcClient'> e services.AddScoped<'GrpcService'>}

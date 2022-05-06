@@ -14,7 +14,7 @@ Key architectural references:
 ![Microservices_Arch_Applied](/helperResourcesAssets/Applied%20Project%20Architecture.png)
 
 Implementations being carried out and planned:
-- Developing Ordering Microservices with CQRS Pattern
+- RabbitMQ and MassTransit for Checkout Order
 
 ## Microservices created and implemented:
 
@@ -77,5 +77,6 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 * **Catalog API -> http://localhost:8000/swagger/index.html**
 * **Basket API -> http://localhost:8001/swagger/index.html**
 * **Discount API -> http://localhost:8002/swagger/index.html**
+* **Ordering API -> http://localhost:8004/swagger/index.html**
 * **Portainer -> http://localhost:9000** - User: admin/admin1234
 * **pgAdmin PostgreSQL -> http://localhost:5050** - admin@postgres.com/admin1234
