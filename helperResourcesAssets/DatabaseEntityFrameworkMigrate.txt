@@ -1,0 +1,3 @@
+-> Install-Package Microsoft.EntityFramework.Tool {project API}
+-> Add-Migration InitialCreate {project Infrastructre}
+-> Update-Database 

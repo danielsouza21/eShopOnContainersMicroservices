@@ -10,8 +10,7 @@ namespace Ordering.Infrastructure
     {
         public static IServiceCollection AddMailServices(this IServiceCollection services, IConfiguration configuration)
         {
-
-            services.Configure<EmailSettings>(c => configuration.GetSection(InfrastructureConstants.EMAIL_SETTINGS_CONFIG_KEY));
+            services.Configure<EmailSettings>(optionConfig => configuration.GetSection(InfrastructureConstants.EMAIL_SETTINGS_CONFIG_KEY).Bind(optionConfig));
             services.AddTransient<IEmailService, EmailService>();
 
             return services;

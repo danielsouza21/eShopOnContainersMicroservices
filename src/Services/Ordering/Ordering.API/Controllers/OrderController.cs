@@ -38,7 +38,7 @@ namespace Ordering.API.Controllers
         public async Task<ActionResult<int>> CheckoutOrder([FromBody] CheckoutOrderCommandRequest command)
         {
             var result = await _mediator.Send(command); //CQRS Pattern -  Command request send
-            return Ok(result);
+            return Ok(new { Id = result });
         }
 
         [HttpPut(Name = "UpdateOrder")]
