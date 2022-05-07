@@ -40,6 +40,7 @@ Implementations being carried out and planned:
 * Using **Dapper for micro-orm implementation** to simplify data access and ensure high performance
 * **PostgreSQL database** connection and containerization
 * Application of retry policy for database migration
+* Publish BasketCheckout Queue with using **MassTransit and RabbitMQ**
 
 #### Ordering Microservice
 * ASP.NET Core Web API application 
@@ -78,5 +79,6 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 * **Basket API -> http://localhost:8001/swagger/index.html**
 * **Discount API -> http://localhost:8002/swagger/index.html**
 * **Ordering API -> http://localhost:8004/swagger/index.html**
+* **Rabbit Management Dashboard -> http://localhost:15672** -- guest/guest
 * **Portainer -> http://localhost:9000** - User: admin/admin1234
 * **pgAdmin PostgreSQL -> http://localhost:5050** - admin@postgres.com/admin1234

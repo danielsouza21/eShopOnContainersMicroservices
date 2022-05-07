@@ -36,6 +36,13 @@ services:
     ports:
         - "1433:1433"
 
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    ports:
+        - "5672:5672"
+        - "15672:15672"
+
   portainer:
     container_name: portainer
     restart: always
@@ -75,6 +82,7 @@ services:
       - "GrpcSettings__DiscountUrl=http://discount.grpc"
     depends_on:
       - basketdb
+      - rabbitmq
     ports:
       - "8001:80"
 
@@ -105,5 +113,6 @@ services:
         - "ConnectionStrings__OrderingServerDb=Server=orderdb;Database=OrderDb;User Id=sa;Password=SwN12345678;"
     depends_on:
         - orderdb
+        - rabbitmq
     ports:
         - "8004:80"
