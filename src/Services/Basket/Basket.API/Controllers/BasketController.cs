@@ -1,11 +1,9 @@
 ﻿using Basket.Domain.Entities;
 using Basket.Infrastructure.Repository;
-using Basket.Infrastructure.Services;
+using Basket.Infrastructure.Services.GrpcService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 

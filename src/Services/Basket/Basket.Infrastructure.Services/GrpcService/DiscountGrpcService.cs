@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Basket.Infrastructure.Services
+namespace Basket.Infrastructure.Services.GrpcService
 {
     public class DiscountGrpcService
     {

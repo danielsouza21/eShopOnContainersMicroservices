@@ -1,7 +1,8 @@
 ﻿using Basket.Infrastructure.Repository;
 using Basket.Infrastructure.Repository.Repositories;
 using Basket.Infrastructure.Repository.Repositories.Extensions;
-using Basket.Infrastructure.Services;
+using Basket.Infrastructure.Services.EventMessage;
+using Basket.Infrastructure.Services.GrpcService;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -18,9 +19,15 @@ namespace Basket.API.Extensions
             var gprcDiscountUrl = configuration
                 .GetSection(AppConstants.GRPC_SETTINGS_CONFIG_KEY)[AppConstants.DISCOUNT_URL_GRPC_CONFIG_KEY];
 
+            var eventBusHostAddress = configuration
+                .GetSection(AppConstants.MESSAGE_BUS_SETTINGS_SECTION_CONFIG)[AppConstants.MESSAGE_BUS_HOSTADDRESS_KEY_CONFIG]; 
+
             //External Services
             services.ConfigureRedisBasket(cacheSettingsConnectionString);
             services.ConfigureDiscountGrpcService(gprcDiscountUrl);
+
+            //Message Exchange
+            services.ConfigureMassTransitRabbitMq(eventBusHostAddress);
 
             //Repositories
             services.AddScoped<IBasketRepository, RedisBasketRepository>();

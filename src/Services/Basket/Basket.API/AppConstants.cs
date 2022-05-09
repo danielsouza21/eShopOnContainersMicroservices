@@ -14,5 +14,8 @@
 
         public const string GRPC_SETTINGS_CONFIG_KEY = "GrpcSettings";
         public const string DISCOUNT_URL_GRPC_CONFIG_KEY = "DiscountUrl";
+
+        public const string MESSAGE_BUS_SETTINGS_SECTION_CONFIG = "EventBusSettings";
+        public const string MESSAGE_BUS_HOSTADDRESS_KEY_CONFIG = "HostAddress";
     }
 }

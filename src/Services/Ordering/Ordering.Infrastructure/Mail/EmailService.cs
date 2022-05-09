@@ -20,7 +20,7 @@ namespace Ordering.Infrastructure.Mail
 
         public readonly ILogger<EmailService> _logger;
 
-        public EmailService(IOptions<EmailSettings> mailSettings, ILogger<EmailService> logger) //TODO: Entender IOptions mailSettings
+        public EmailService(IOptions<EmailSettings> mailSettings, ILogger<EmailService> logger)
         {
             _emailSettings = mailSettings.Value;
             _logger = logger;

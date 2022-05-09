@@ -32,6 +32,7 @@ Implementations being carried out and planned:
 * **Redis database** connection and containerization
 * Consume **Discount Grpc Service** for inter-service sync communication to calculate product final price
 * Repository Pattern Implementation
+* Publish BasketCheckout Queue with using **MassTransit and RabbitMQ**
 
 #### Discount microservice which includes;
 * ASP.NET **Grpc Server** application
@@ -40,7 +41,6 @@ Implementations being carried out and planned:
 * Using **Dapper for micro-orm implementation** to simplify data access and ensure high performance
 * **PostgreSQL database** connection and containerization
 * Application of retry policy for database migration
-* Publish BasketCheckout Queue with using **MassTransit and RabbitMQ**
 
 #### Ordering Microservice
 * ASP.NET Core Web API application 

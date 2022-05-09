@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Basket.Infrastructure.Services
+namespace Basket.Infrastructure.Services.GrpcService
 {
     public static class GrpcServiceExtensions
     {
