@@ -1,4 +1,5 @@
-﻿using Basket.Infrastructure.Repository;
+﻿using Basket.API.Mappings;
+using Basket.Infrastructure.Repository;
 using Basket.Infrastructure.Repository.Repositories;
 using Basket.Infrastructure.Repository.Repositories.Extensions;
 using Basket.Infrastructure.Services.EventMessage;
@@ -17,7 +18,7 @@ namespace Basket.API.Extensions
                 .GetSection(AppConstants.REDIS_CACHE_SETTINGS_SECTION_CONFIG)[AppConstants.REDIS_CONNECTION_STRING_KEY_CONFIG];
 
             var gprcDiscountUrl = configuration
-                .GetSection(AppConstants.GRPC_SETTINGS_CONFIG_KEY)[AppConstants.DISCOUNT_URL_GRPC_CONFIG_KEY];
+                .GetSection(AppConstants.GRPC_SETTINGS_SECTION_CONFIG)[AppConstants.DISCOUNT_URL_GRPC_CONFIG_KEY_CONFIG];
 
             var eventBusHostAddress = configuration
                 .GetSection(AppConstants.MESSAGE_BUS_SETTINGS_SECTION_CONFIG)[AppConstants.MESSAGE_BUS_HOSTADDRESS_KEY_CONFIG]; 
@@ -31,6 +32,10 @@ namespace Basket.API.Extensions
 
             //Repositories
             services.AddScoped<IBasketRepository, RedisBasketRepository>();
+
+            //AutoMapper
+            var mapper = BasketProfile.InitializeAutoMapper().CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         public static void AddSwagger(this IServiceCollection services)

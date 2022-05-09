@@ -12,8 +12,8 @@
         public const string REDIS_CACHE_SETTINGS_SECTION_CONFIG = "CacheSettings";
         public const string REDIS_CONNECTION_STRING_KEY_CONFIG = "ConnectionString";
 
-        public const string GRPC_SETTINGS_CONFIG_KEY = "GrpcSettings";
-        public const string DISCOUNT_URL_GRPC_CONFIG_KEY = "DiscountUrl";
+        public const string GRPC_SETTINGS_SECTION_CONFIG = "GrpcSettings";
+        public const string DISCOUNT_URL_GRPC_CONFIG_KEY_CONFIG = "DiscountUrl";
 
         public const string MESSAGE_BUS_SETTINGS_SECTION_CONFIG = "EventBusSettings";
         public const string MESSAGE_BUS_HOSTADDRESS_KEY_CONFIG = "HostAddress";

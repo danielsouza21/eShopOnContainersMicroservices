@@ -17,7 +17,7 @@ namespace Ordering.Application.Mappings
 
         public static MapperConfiguration InitializeAutoMapper()
         {
-            MapperConfiguration config = new MapperConfiguration(cfg =>
+            var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new MappingProfile());
             });
