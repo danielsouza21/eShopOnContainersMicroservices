@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EventBus.Messages.Events;
 using Ordering.Application.Dtos;
 using Ordering.Application.Features.Orders.Commands.CheckoutOrder;
 using Ordering.Application.Features.Orders.Commands.UpdateOrder;
@@ -13,6 +14,8 @@ namespace Ordering.Application.Mappings
             CreateMap<Order, OrdersDto>().ReverseMap();
             CreateMap<Order, CheckoutOrderCommandRequest>().ReverseMap();
             CreateMap<Order, UpdateOrderCommandRequest>().ReverseMap();
+
+            CreateMap<CheckoutOrderCommandRequest, BasketCheckoutEvent>().ReverseMap();
         }
 
         public static MapperConfiguration InitializeAutoMapper()

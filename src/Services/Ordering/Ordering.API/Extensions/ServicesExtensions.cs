@@ -39,7 +39,8 @@ namespace Ordering.API.Extensions
         private static void ConfigureInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddMailServices(configuration);
-            services.AddPersistenceServices(configuration);
+            services.AddPersistenceServices(configuration);            
+            services.ConfigureMassTransitRabbitMq(configuration);
         }
 
         private static void ConfigureCqrsMediatrWithValidation(this IServiceCollection services)
