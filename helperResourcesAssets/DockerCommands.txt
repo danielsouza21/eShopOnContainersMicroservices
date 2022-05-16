@@ -10,3 +10,4 @@ docker ps (list all running containers)
 docker pull redis (to download a image)
 
 docker kill $(docker ps -q) [stop all containers]
+docker rm $(docker ps --filter status=exited -q)
