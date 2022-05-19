@@ -1,13 +1,19 @@
 ﻿using EventBus.Messages.Common;
 using MassTransit;
 using MassTransit.ExtensionsDependencyInjectionIntegration;
+using MassTransit.RabbitMqTransport;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Ordering.Infrastructure.EventBus
 {
     public static class EventBusConsumerConfiguration
     {
-        public static void ConfigureContextConsumers(IBusRegistrationContext context, IRabbitMqBusFactoryConfigurator cfg)
+        public static void AddBusConsumers(this IServiceCollectionBusConfigurator config)
+        {
+            config.AddConsumer<BasketCheckoutConsumer>();
+        }
+
+        public static void ConfigureContextConsumers(this IRabbitMqBusFactoryConfigurator cfg, IBusRegistrationContext context)
         {
             //Configure the Consumer<EventClass> of queue events
             //Consumer is a handler to process a new event
@@ -17,12 +23,7 @@ namespace Ordering.Infrastructure.EventBus
             });
         }
 
-        public static void ConfigureBusConsumers(IServiceCollectionBusConfigurator config)
-        {
-            config.AddConsumer<BasketCheckoutConsumer>();
-        }
-
-        public static void ConfigureDependencyInjectionConsumers(IServiceCollection services)
+        public static void ConfigureInjectionEventBusConsumers(this IServiceCollection services)
         {
             services.AddScoped<BasketCheckoutConsumer>();
         }

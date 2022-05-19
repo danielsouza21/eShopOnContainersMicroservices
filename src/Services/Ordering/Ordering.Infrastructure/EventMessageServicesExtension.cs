@@ -1,6 +1,4 @@
-﻿using EventBus.Messages.Common;
-using MassTransit;
-using MassTransit.ExtensionsDependencyInjectionIntegration;
+﻿using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Ordering.Infrastructure.EventBus;
@@ -16,16 +14,17 @@ namespace Ordering.Infrastructure
 
             services.AddMassTransit(config =>
             {
-                EventBusConsumerConfiguration.ConfigureBusConsumers(config);
+                config.AddBusConsumers();
 
                 config.UsingRabbitMq((context, cfg) =>
                 {
                     cfg.Host(eventBusHostAddress);
-                    EventBusConsumerConfiguration.ConfigureContextConsumers(context, cfg);
+                    cfg.ConfigureContextConsumers(context);
                 });
             });
+            services.AddMassTransitHostedService();
 
-            EventBusConsumerConfiguration.ConfigureDependencyInjectionConsumers(services);
+            services.ConfigureInjectionEventBusConsumers();
         }
     }
 }

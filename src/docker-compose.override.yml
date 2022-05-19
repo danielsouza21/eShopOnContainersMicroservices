@@ -112,6 +112,7 @@ services:
     environment:
         - ASPNETCORE_ENVIRONMENT=Development
         - "ConnectionStrings__OrderingServerDb=Server=orderdb;Database=OrderDb;User Id=sa;Password=SwN12345678;"
+        - "EventBusSettings__HostAddress=amqp://guest:guest@rabbitmq:5672"
     depends_on:
         - orderdb
         - rabbitmq
