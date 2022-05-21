@@ -14,11 +14,11 @@ Key architectural references:
 ![Microservices_Arch_Applied](/helperResourcesAssets/Applied%20Project%20Architecture.png)
 
 Implementations being carried out and planned:
-- RabbitMQ and MassTransit for Checkout Order
+- Ocelot API Gateway (BFF) and Agreggator
 
 ## Microservices created and implemented:
 
-> 💡 SOLID, Clean Architecture, Domain Driven Design (DDD), Clean Code, Repository Pattern, logging, validation, exception handling, Swagger Open API and other standards/features were highly used for designing the projects.
+> 💡 SOLID, Clean Architecture, Domain Driven Design (DDD), Clean Code, Repository Pattern, logging, validation, exception handling, Swagger Open API and other standards/features were widely used for the design of projects.
 
 #### Catalog microservice: 
 * ASP.NET Core Web API application 
@@ -55,6 +55,12 @@ Implementations being carried out and planned:
 * YML files configuration
 * Use Portainer to manage docker containers
 
+#### API Gateway Ocelot Microservice
+* Implement **API Gateways with Ocelot**
+* Sample microservices/containers to reroute through the API Gateways
+* Run multiple different **API Gateway/BFF** container types	
+* The Gateway aggregation pattern in Shopping.Aggregator
+
 ## Setup and Run Project
 
 ### Requirements
@@ -79,6 +85,9 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 * **Basket API -> http://localhost:8001/swagger/index.html**
 * **Discount API -> http://localhost:8002/swagger/index.html**
 * **Ordering API -> http://localhost:8004/swagger/index.html**
+* **Shopping.Aggregator -> http://localhost:8005/swagger/index.html**
+* **API Gateway -> http://localhost:8010/Catalog**
+
 * **Rabbit Management Dashboard -> http://localhost:15672** -- guest/guest
 * **Portainer -> http://localhost:9000** - User: admin/admin1234
 * **pgAdmin PostgreSQL -> http://localhost:5050** - admin@postgres.com/admin1234

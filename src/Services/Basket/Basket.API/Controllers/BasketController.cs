@@ -94,6 +94,7 @@ namespace Basket.API.Controllers
             basketEventMessage.TotalPrice = basket.TotalPrice;
 
             //Publish an event that will be processed by 'BasketCheckoutConsumer.cs' in OrderingAPI
+            //Fanout Exchange: message to all bound queues indiscriminately
             await _publishEndpoint.Publish(basketEventMessage);
 
             //Remove the basket
