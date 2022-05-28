@@ -15,13 +15,13 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "OcelotApiGateway": {
+    "OcelotApiGw_EnvLocal": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:5000",
+      "applicationUrl": "http://localhost:5010",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Local"
       }
     }
   }
