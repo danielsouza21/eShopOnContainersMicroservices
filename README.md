@@ -73,7 +73,7 @@ Implementations being carried out and planned:
 
 1. At the root directory which include **docker-compose.yml** files, run below command to inicialize docker microservices containers:
 ```csharp
-docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
+docker-compose -f .\docker-compose.yml -f.\docker-compose.override.yml up -d --build
 ```
 > Wait for docker compose all microservices, some microservices need extra time to work
 
