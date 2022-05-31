@@ -1,13 +1,14 @@
-using Catalog.API.Extensions;
-using Catalog.API.Middlewares;
+using IdentityServer4.Models;
+using IdentityServer4.Test;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Collections.Generic;
 
-namespace Catalog.API
+namespace IdentityServer
 {
     public class Startup
     {
@@ -21,25 +22,20 @@ namespace Catalog.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDependenciesInjection();
 
             services.AddControllers();
-            services.AddSwagger();
-
-            services.AddAuthentication("Bearer")
-                .AddJwtBearer("Bearer", options =>
-                {
-                    options.Authority = "https://localhost:5005"; //TODO: Verificar oque seria este serviço
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateAudience = false
-                    };
-                });
-
-            services.AddAuthorization(options =>
+            services.AddSwaggerGen(c =>
             {
-                options.AddPolicy(AppConstants.ESHOP_CLIENT_POLICY, policy => policy.RequireClaim("client_id", "eshop"));
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "IdentityServer", Version = "v1" });
             });
+
+            services.AddIdentityServer()
+                .AddInMemoryClients(Config.Clients)
+                .AddInMemoryIdentityResources(Config.IdentityResources)
+                .AddInMemoryApiResources(Config.ApiResources)
+                .AddInMemoryApiScopes(Config.ApiScopes)
+                .AddTestUsers(Config.TestUsers)
+                .AddDeveloperSigningCredential();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,15 +44,16 @@ namespace Catalog.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.ConfigureSwagger();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "IdentityServer v1"));
             }
 
+            app.UseHttpsRedirection();
+
             app.UseRouting();
+            app.UseIdentityServer();
 
-            app.UseAuthentication();
             app.UseAuthorization();
-
-            app.UseMiddleware<ErrorHandlerMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

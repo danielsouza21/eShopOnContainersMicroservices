@@ -8,5 +8,7 @@
         public const string SWAGGER_APP_NAME = "Catalog.API";
         public const string SWAGGER_APP_VERSION = "v1";
         public const string SWAGGER_NAME_FORMAT = "{0} {1}";
+
+        public const string ESHOP_CLIENT_POLICY = "ClientIdPolicy";
     }
 }

@@ -85,8 +85,10 @@ docker-compose -f .\docker-compose.yml -f.\docker-compose.override.yml up -d --b
 * **Basket API -> http://localhost:8001/swagger/index.html**
 * **Discount API -> http://localhost:8002/swagger/index.html**
 * **Ordering API -> http://localhost:8004/swagger/index.html**
+
 * **Shopping.Aggregator -> http://localhost:8005/swagger/index.html**
 * **API Gateway -> http://localhost:8010/Catalog**
+* **IdentityServer -> http://localhost:8011**
 
 * **Rabbit Management Dashboard -> http://localhost:15672** -- guest/guest
 * **Portainer -> http://localhost:9000** - User: admin/admin1234

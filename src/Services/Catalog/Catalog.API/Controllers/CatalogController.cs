@@ -1,5 +1,6 @@
 ﻿using Catalog.Domain.Entities;
 using Catalog.Infrastructure.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 namespace Catalog.API.Controllers
 {
     [ApiController]
+    [Authorize(AppConstants.ESHOP_CLIENT_POLICY)]
     [Route("api/v1/[controller]")]
     public class CatalogController : ControllerBase
     {
