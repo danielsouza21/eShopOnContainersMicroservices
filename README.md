@@ -8,6 +8,7 @@ Implementation of an ECommerce using a complex microservices architecture with s
 Key architectural references:
 * [Introducing eShopOnContainers reference app](https://docs.microsoft.com/en-us/dotnet/architecture/cloud-native/introduce-eshoponcontainers-reference-app)
 * [.NET Microservices: Architecture for Containerized .NET Applications](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/)
+* [Securing Microservices with IdentityServer4, OAuth2 and OpenID](https://medium.com/aspnetrun/securing-microservices-with-identityserver4-with-oauth2-and-openid-connect-fronted-by-ocelot-api-49ea44a0cf9e)
 
 ## Final design goal and current state of development:
 
@@ -61,6 +62,10 @@ Implementations being carried out and planned:
 * Run multiple different **API Gateway/BFF** container types	
 * The Gateway aggregation pattern in Shopping.Aggregator
 
+#### Identity Server
+* Creating security server using Identity Server 4
+* Applying OpenId (authentication) and OAuth2 (authorization) security protocols
+
 ## Setup and Run Project
 
 ### Requirements
@@ -88,8 +93,8 @@ docker-compose -f .\docker-compose.yml -f.\docker-compose.override.yml up -d --b
 
 * **Shopping.Aggregator -> http://localhost:8005/swagger/index.html**
 * **API Gateway -> http://localhost:8010/Catalog**
-* **IdentityServer -> http://localhost:8011**
 
+* **IdentityServer -> http://localhost:8011/.well-known/openid-configuration**
 * **Rabbit Management Dashboard -> http://localhost:15672** -- guest/guest
 * **Portainer -> http://localhost:9000** - User: admin/admin1234
 * **pgAdmin PostgreSQL -> http://localhost:5050** - admin@postgres.com/admin1234

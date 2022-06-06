@@ -1,11 +1,13 @@
 using Catalog.API.Extensions;
 using Catalog.API.Middlewares;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Catalog.API
 {
@@ -26,15 +28,23 @@ namespace Catalog.API
             services.AddControllers();
             services.AddSwagger();
 
-            services.AddAuthentication("Bearer")
-                .AddJwtBearer("Bearer", options =>
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                //options.Authority = "http://localhost:8011"; //TODO: Mudar para appsettings + dockerContainer
+                x.RequireHttpsMetadata = false;
+                x.TokenValidationParameters = new TokenValidationParameters
                 {
-                    options.Authority = "https://localhost:5005"; //TODO: Verificar oque seria este serviço
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateAudience = false
-                    };
-                });
+                    ValidateIssuerSigningKey = true, //TODO: REMOVER (usar Authority url)
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("cmA1Z5oHWB")), //TODO: REMOVER (usar Authority url)
+                    ValidateIssuer = false, //TODO: REMOVER (usar Authority url)
+                    ValidateAudience = false
+                };
+            });
 
             services.AddAuthorization(options =>
             {

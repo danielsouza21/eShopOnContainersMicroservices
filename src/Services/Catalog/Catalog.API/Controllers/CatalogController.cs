@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Catalog.API.Controllers
 {
     [ApiController]
-    [Authorize(AppConstants.ESHOP_CLIENT_POLICY)]
+    [Authorize]
     [Route("api/v1/[controller]")]
     public class CatalogController : ControllerBase
     {
