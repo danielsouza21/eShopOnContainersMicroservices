@@ -35,20 +35,18 @@ namespace Catalog.API
             })
             .AddJwtBearer(x =>
             {
-                //options.Authority = "http://localhost:8011"; //TODO: Mudar para appsettings + dockerContainer
+                x.Authority = Configuration["IdentityServerUrl"];
                 x.RequireHttpsMetadata = false;
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuerSigningKey = true, //TODO: REMOVER (usar Authority url)
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("cmA1Z5oHWB")), //TODO: REMOVER (usar Authority url)
-                    ValidateIssuer = false, //TODO: REMOVER (usar Authority url)
-                    ValidateAudience = false
+                    ValidateAudience = false,
+                    ValidateIssuer = false
                 };
             });
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy(AppConstants.ESHOP_CLIENT_POLICY, policy => policy.RequireClaim("client_id", "eshop"));
+                options.AddPolicy(AppConstants.ESHOP_CLIENT_POLICY, policy => policy.RequireClaim("scope", "testScope"));
             });
         }
 

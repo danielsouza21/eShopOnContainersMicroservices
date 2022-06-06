@@ -64,11 +64,19 @@ services:
     volumes:
       - pgadmin_data:/root/.pgadmin
 
+  identity.server:
+    container_name: identity.server
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8011:80"
+
   catalog.api:
     container_name: catalog.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings__ConnectionString=mongodb://catalogdb:27017"
+      - "IdentityServerUrl=http://identity.server"
     depends_on:
       - catalogdb
     ports:

@@ -1,4 +1,5 @@
 ﻿using IdentityModel;
+using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
 using System.Collections.Generic;
@@ -22,14 +23,15 @@ namespace IdentityServer
                         {
                             new Secret(SECRET.Sha256())
                         },
-                        AllowedScopes = { CATALOG_SCOPE }
+                        AllowedScopes = { CATALOG_SCOPE, "testScope" }
                    }
             };
 
         public static IEnumerable<ApiScope> ApiScopes =>
            new ApiScope[]
            {
-               new ApiScope(CATALOG_SCOPE, "Catalog API")
+               new ApiScope(CATALOG_SCOPE, "Catalog API"),
+               new ApiScope("testScope", "testScope")
            };
 
         public static IEnumerable<ApiResource> ApiResources =>
@@ -41,11 +43,8 @@ namespace IdentityServer
         public static IEnumerable<IdentityResource> IdentityResources =>
           new IdentityResource[]
           {
-              new IdentityResources.OpenId(),
-              new IdentityResources.Profile(),
-              new IdentityResources.Address(),
-              new IdentityResources.Email(),
-              new IdentityResource("roles", "Your role(s)", new List<string>() { "role" })
+            new IdentityResources.OpenId(),
+            new IdentityResources.Profile()
           };
 
         public static List<TestUser> TestUsers =>
